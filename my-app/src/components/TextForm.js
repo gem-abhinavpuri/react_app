@@ -13,7 +13,9 @@ export default function TextForm(props) {
   const handleDeleteClick = () => {
     setText("");
   };
-
+  const handleCopyClick = () => {
+    navigator.clipboard.writeText(text);
+  };
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
@@ -42,6 +44,9 @@ export default function TextForm(props) {
         </button>
         <button className="btn btn-danger me-3" onClick={handleDeleteClick}>
           {props.button3}
+        </button>
+        <button className="btn btn-outline-secondary me-3" onClick={handleCopyClick}>
+          {props.button4}
         </button>
         <span className="badge bg-secondary me-3">
           Words: {text.match(/\S+/g)?.length || 0}
