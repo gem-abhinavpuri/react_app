@@ -34,6 +34,11 @@ export default function Navbar(props) {
                 {props.aboutText}
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/danger">
+                Danger
+              </Link>
+            </li>
           </ul>
           {/* <div className="form-check form-switch">
             <input

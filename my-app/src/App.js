@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //  https://reactrouter.com/en/main/routers/picking-a-router
 
 import React, { useState } from "react";
+import AlertWithAudio from "./components/AlertWithAudio";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -85,7 +86,8 @@ function App() {
             />
           }
         />
-        <Route exact path="/about" element={<AboutUs />} />
+        <Route exact path="/about" element={<AboutUs mode = {mode}/>} />
+        <Route exact path="/danger" element={<AlertWithAudio />} />
       </Routes>
     </BrowserRouter>
   );
