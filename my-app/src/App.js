@@ -13,6 +13,20 @@ function App() {
     setMode(newMode);
     document.body.style.backgroundColor = backgroundColor;
     showAlert(message, "success");
+    document.title =
+      "Word Counter - " +
+      `${backgroundColor === "#042743" ? "dark" : backgroundColor}` +
+      " mode";
+
+    setInterval(() => {
+      document.title = "Moye Moye";
+    }, 2000);
+    setInterval(() => {
+      document.title =
+        "Word Counter - " +
+        `${backgroundColor === "#042743" ? "dark" : backgroundColor}` +
+        " mode";
+    }, 4000);
   };
 
   const showAlert = (message, type) => {
