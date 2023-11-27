@@ -1,8 +1,11 @@
 import "./App.css";
 import Alerts from "./components/Alerts";
-// import AboutUs from "./components/AboutUs";
+import AboutUs from "./components/AboutUs";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+//  https://reactrouter.com/en/main/routers/picking-a-router
+
 import React, { useState } from "react";
 
 function App() {
@@ -41,7 +44,7 @@ function App() {
   };
 
   return (
-    <>
+    <BrowserRouter>
       <Navbar
         title="Word Counter"
         mode={mode}
@@ -61,23 +64,30 @@ function App() {
           toggleMode("light", "white", "White mode has been enabled")
         }
       />
+
       <div style={{ height: "55px" }}>
         <Alerts alert={alert} />
       </div>
-      <div className="container">
-        <TextForm
-          heading="Enter text to analyze"
-          button1="Convert to UpperCase"
-          button2="Convert to LowerCase"
-          button3="Clear"
-          button4="Copy Text"
-          mode={mode}
-          showAlert={showAlert}
-        />
 
-        {/* <AboutUs /> */}
-      </div>
-    </>
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            <TextForm
+              heading="Enter text to analyze"
+              button1="Convert to UpperCase"
+              button2="Convert to LowerCase"
+              button3="Clear"
+              button4="Copy Text"
+              mode={mode}
+              showAlert={showAlert}
+            />
+          }
+        />
+        <Route exact path="/about" element={<AboutUs />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
