@@ -36,7 +36,7 @@ export default function Navbar(props) {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/danger">
-                Danger
+                Moye Moye
               </Link>
             </li>
           </ul>
