@@ -5,25 +5,29 @@ export default function TextForm(props) {
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to Uppercase", "success");
   };
   const handleLowerClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to lowecase", "success");
   };
   const handleDeleteClick = () => {
     setText("");
+    props.showAlert("Text deleted", "success");
   };
   const handleCopyClick = async () => {
     if (!navigator.clipboard) {
-      console.error("Clipboard API not available");
+      props.showAlert("Text cannot copied to clipboard", "danger");
+
       return;
     }
 
     try {
       await navigator.clipboard.writeText(text);
-      console.log("Text copied to clipboard");
+      props.showAlert("Text copied to clipboard", "success");
     } catch (err) {
-      console.error("Failed to copy:", err);
+      props.showAlert("Text failed copy", "danger");
     }
   };
 
