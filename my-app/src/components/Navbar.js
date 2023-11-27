@@ -34,7 +34,7 @@ export default function Navbar(props) {
               </a>
             </li>
           </ul>
-          <div className="form-check form-switch">
+          {/* <div className="form-check form-switch">
             <input
               className="form-check-input"
               type="checkbox"
@@ -49,7 +49,16 @@ export default function Navbar(props) {
             >
               Change to {props.mode === "light" ? "dark" : "light"} mode
             </label>
+          </div> */}
+
+          <div className="color-palette">
+            <button className="color" onClick={props.toggleMode1} style={{ "--hue": 0 }}></button>
+            <button className="color" onClick={props.toggleMode2} style={{ "--hue": 30 }}></button>
+            <button className="color" onClick={props.toggleMode3} style={{ "--hue": 60 }}></button>
+            <button className="color" onClick={props.toggleMode4} style={{ "--hue": 207 }}></button>
+            <button className="color" onClick={props.toggleMode5} style={{ "--hue": 0 }}></button>
           </div>
+
           <form className="d-flex">
             <input
               className="form-control me-2"

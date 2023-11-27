@@ -9,16 +9,10 @@ function App() {
   const [mode, setMode] = useState("light");
   const [alert, setAlert] = useState(null);
 
-  const toggleMode = () => {
-    if (mode === "light") {
-      setMode("dark");
-      document.body.style.backgroundColor = "#042743";
-      showAlert("Dark mode has been enable", "success");
-    } else {
-      setMode("light");
-      document.body.style.backgroundColor = "white";
-      showAlert("Light mode has been enable", "success");
-    }
+  const toggleMode = (newMode, backgroundColor, message) => {
+    setMode(newMode);
+    document.body.style.backgroundColor = backgroundColor;
+    showAlert(message, "success");
   };
 
   const showAlert = (message, type) => {
@@ -34,7 +28,25 @@ function App() {
 
   return (
     <>
-      <Navbar title="Word Counter" mode={mode} toggleMode={toggleMode} />
+      <Navbar
+        title="Word Counter"
+        mode={mode}
+        toggleMode1={() =>
+          toggleMode("dark", "red", "Red mode has been enabled")
+        }
+        toggleMode2={() =>
+          toggleMode("dark", "orange", "Orange mode has been enabled")
+        }
+        toggleMode3={() =>
+          toggleMode("light", "yellow", "Yellow mode has been enabled")
+        }
+        toggleMode4={() =>
+          toggleMode("dark", "#042743", "Dark mode has been enabled")
+        }
+        toggleMode5={() =>
+          toggleMode("light", "white", "White mode has been enabled")
+        }
+      />
       <div style={{ height: "55px" }}>
         <Alerts alert={alert} />
       </div>
