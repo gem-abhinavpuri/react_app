@@ -17,20 +17,20 @@ function App() {
     setMode(newMode);
     document.body.style.backgroundColor = backgroundColor;
     showAlert(message, "success");
-    document.title =
-      "Word Counter - " +
-      `${backgroundColor === "#042743" ? "dark" : backgroundColor}` +
-      " mode";
+    // document.title =
+    //   "Word Counter - " +
+    //   `${backgroundColor === "#042743" ? "dark" : backgroundColor}` +
+    //   " mode";
 
-    setInterval(() => {
-      document.title = "Moye Moye";
-    }, 2000);
-    setInterval(() => {
-      document.title =
-        "Word Counter - " +
-        `${backgroundColor === "#042743" ? "dark" : backgroundColor}` +
-        " mode";
-    }, 4000);
+    // setInterval(() => {
+    //   document.title = "Moye Moye";
+    // }, 2000);
+    // setInterval(() => {
+    //   document.title =
+    //     "Word Counter - " +
+    //     `${backgroundColor === "#042743" ? "dark" : backgroundColor}` +
+    //     " mode";
+    // }, 4000);
   };
 
   const showAlert = (message, type) => {
@@ -66,9 +66,7 @@ function App() {
         }
       />
 
-      <div style={{ height: "55px" }}>
-        <Alerts alert={alert} />
-      </div>
+      <Alerts alert={alert} />
 
       <Routes>
         <Route
@@ -86,7 +84,7 @@ function App() {
             />
           }
         />
-        <Route exact path="/about" element={<AboutUs mode = {mode}/>} />
+        <Route exact path="/about" element={<AboutUs mode={mode} />} />
         <Route exact path="/danger" element={<AlertWithAudio />} />
       </Routes>
     </BrowserRouter>
