@@ -71,7 +71,7 @@ function App() {
       <Routes>
         <Route
           exact
-          path="/"
+          path="/react_app"
           element={
             <TextForm
               heading="Enter text to analyze"
