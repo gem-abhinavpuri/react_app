@@ -2,19 +2,38 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 export default function TextForm(props) {
+  const [text, setText] = useState("");
+  let textLengh = text.match(/\S+/g)?.length || 0;
+
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
-    props.showAlert("Converted to Uppercase", "success");
+    if (textLengh === 0) {
+      props.showAlert("Enter a text first", "warning");
+    } else {
+      props.showAlert("Converted to Uppercase", "success");
+    }
   };
   const handleLowerClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
-    props.showAlert("Converted to lowecase", "success");
+    if (textLengh === 0) {
+      props.showAlert("Enter a text first", "warning");
+    } else {
+      props.showAlert("Converted to Lowercase", "success");
+    }
   };
   const handleDeleteClick = () => {
     setText("");
-    props.showAlert("Text deleted", "success");
+    if (textLengh === 0) {
+      props.showAlert("Enter a text first", "warning");
+    } else {
+      if (textLengh === 0) {
+        props.showAlert("Enter a text first", "warning");
+      } else {
+        props.showAlert("Text deleted", "success");
+      }
+    }
   };
   const handleCopyClick = async () => {
     if (!navigator.clipboard) {
@@ -25,7 +44,11 @@ export default function TextForm(props) {
 
     try {
       await navigator.clipboard.writeText(text);
-      props.showAlert("Text copied to clipboard", "success");
+      if (textLengh === 0) {
+        props.showAlert("Enter a text first", "warning");
+      } else {
+        props.showAlert("Text copied to clipboard", "success");
+      }
     } catch (err) {
       props.showAlert("Text failed copy", "danger");
     }
@@ -34,8 +57,6 @@ export default function TextForm(props) {
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
-
-  const [text, setText] = useState("");
 
   return (
     <>
@@ -58,7 +79,8 @@ export default function TextForm(props) {
                     value={text}
                     onChange={handleOnChange}
                     style={{
-                      backgroundColor: props.mode === "dark" ? "grey" : "white",
+                      backgroundColor:
+                        props.mode === "dark" ? "#13466e" : "white",
                       color: props.mode === "dark" ? "white" : "black",
                     }}
                     id="mybox"
@@ -66,46 +88,47 @@ export default function TextForm(props) {
                   ></textarea>
                 </div>
                 <div id="text-funx" className="container-fuild">
-                <button
-                  className="btn btn-primary me-3"
-                  onClick={handleUpClick}
-                >
-                  {props.button1}
-                </button>
-                <button
-                  className="btn btn-primary me-3"
-                  onClick={handleLowerClick}
-                >
-                  {props.button2}
-                </button>
-                <button
-                  className="btn btn-danger me-3"
-                  onClick={handleDeleteClick}
-                >
-                  {props.button3}
-                </button>
-                <button
-                  className="btn btn-outline-secondary me-3"
-                  onClick={handleCopyClick}
-                  style={{
-                    color: props.mode === "dark" ? "white" : "black",
-                    borderColor: props.mode === "dark" ? "white" : "grey",
-                  }}
-                >
-                  {props.button4}
-                </button>
-                <span className="badge bg-secondary me-3">
-                  Words: {text.match(/\S+/g)?.length || 0}
-                </span>
-                <span className="badge bg-secondary me-3">
-                  Characters: {text.length}
-                </span>
-                <span className="badge bg-secondary">
-                  Lines: {text.split("\n").length}
-                </span>
+                  <button
+                    className="btn btn-primary me-3"
+                    onClick={handleUpClick}
+                  >
+                    {props.button1}
+                  </button>
+                  <button
+                    className="btn btn-primary me-3"
+                    onClick={handleLowerClick}
+                  >
+                    {props.button2}
+                  </button>
+                  <button
+                    className="btn btn-danger me-3"
+                    disabled={textLengh===0}
+                    onClick={handleDeleteClick}
+                  >
+                    {props.button3}
+                  </button>
+                  <button
+                    className="btn btn-outline-secondary me-3"
+                    onClick={handleCopyClick}
+                    style={{
+                      color: props.mode === "dark" ? "white" : "black",
+                      borderColor: props.mode === "dark" ? "white" : "grey",
+                    }}
+                  >
+                    {props.button4}
+                  </button>
+                  <span className="badge bg-secondary me-3">
+                    Words: {text.match(/\S+/g)?.length || 0}
+                  </span>
+                  <span className="badge bg-secondary me-3">
+                    Characters: {text.length}
+                  </span>
+                  <span className="badge bg-secondary">
+                    Lines: {text.split("\n").length}
+                  </span>
                 </div>
               </div>
-              
+
               <div
                 className="alert alert-success my-5"
                 style={{
